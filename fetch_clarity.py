@@ -27,8 +27,10 @@ sheet = gc.open_by_key(
 worksheet = sheet.worksheet("daily_metrics")
 
 # Clarity API
+token = os.environ["CLARITY_API_TOKEN"].strip()
+
 headers = {
-    "Authorization": f"Bearer {os.environ['CLARITY_API_TOKEN']}",
+    "Authorization": f"Bearer {token}",
     "Content-Type": "application/json"
 }
 
