@@ -1,10 +1,18 @@
-name: Test
+name: Test Clarity API
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  test-api:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "Hello"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test Clarity API
+        run: |
+          curl --location "https://www.clarity.ms/export-data/api/v1/project-live-insights?numOfDays=1&dimension1=Device" \
+          --header "Authorization: Bearer ${{ secrets.CLARITY_API_TOKEN }}" \
+          --header "Content-Type: application/json"
